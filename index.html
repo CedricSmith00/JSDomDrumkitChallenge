@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drumkit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Drum Kit</h1>
+    <div class="drum-kit">
+        <div class="drum">
+            <button data-sound="boom" id="boom">A</button>
+            <p>BOOM</p>
+        </div>
+        <div class="drum">
+            <button data-sound="clap" id="clap">S</button>
+            <p>CLAP</p>
+        </div>
+        <div class="drum">
+            <button data-sound="hihat" id="hihat">D</button>
+            <p>HIHAT</p>
+        </div>
+        <div class="drum">
+            <button data-sound="kick" id="kick">F</button>
+            <p>KICK</p>
+        </div>
+        <div class="drum">
+            <button data-sound="openhat" id="openhat">G</button>
+            <p>OPENHAT</p>
+        </div>
+        <div class="drum">
+            <button data-sound="ride" id="ride">H</button>
+            <p>RIDE</p>
+        </div>
+        <div class="drum">
+            <button data-sound="snare" id="snare">J</button>
+            <p>SNARE</p>
+        </div>
+        <div class="drum">
+            <button data-sound="tink" id="tink">K</button>
+            <p>TINK</p>
+        </div>
+        <div class="drum">
+            <button data-sound="tom" id="tom">L</button>
+            <p>TOM</p>
+        </div>
+    </div>
+
+    <script>
+        
+        const soundFiles = {
+            boom: 'sounds/boom.wav',
+            clap: 'sounds/clap.wav',
+            hihat: 'sounds/hihat.wav',
+            kick: 'sounds/kick.wav',
+            openhat: 'sounds/openhat.wav',
+            ride: 'sounds/ride.wav',
+            snare: 'sounds/snare.wav',
+            tink: 'sounds/tink.wav',
+            tom: 'sounds/tom.wav'
+        };
+
+      
+        function playSound(sound) {
+            const audio = new Audio(soundFiles[sound]);
+            audio.play();
+        }
+
+        
+        document.addEventListener('keydown', function(event) {
+            const keyMap = {
+                'A': 'boom',
+                'S': 'clap',
+                'D': 'hihat',
+                'F': 'kick',
+                'G': 'openhat',
+                'H': 'ride',
+                'J': 'snare',
+                'K': 'tink',
+                'L': 'tom'
+            };
+
+            const sound = keyMap[event.key.toUpperCase()];
+            if (sound) {
+                playSound(sound);
+            }
+        });
+
+        
+        document.querySelectorAll('.drum button').forEach(button => {
+            button.addEventListener('click', () => {
+                const sound = button.getAttribute('data-sound');
+                playSound(sound);
+            });
+        });
+    </script>
+</body>
+</html>
